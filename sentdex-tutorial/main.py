@@ -15,27 +15,37 @@ class Window(QtGui.QMainWindow):
         extractAction.setStatusTip('Leave The App')
         extractAction.triggered.connect(self.close_application)
 
-        self.statusBar()
-
         mainMenu = self.menuBar()
         fileMenu = mainMenu.addMenu('&File')
         fileMenu.addAction(extractAction)
 
+        self.statusBar()
         self.home()
 
     def home(self):
         btn = QtGui.QPushButton('Quit', self)
         btn.clicked.connect(self.close_application)
+        btn.setStatusTip('Leave The App')
 
         # btn.resize(100,100)
         # btn.resize(btn.sizeHint())
         btn.resize(btn.minimumSizeHint())
         btn.move(0,100)
 
+        extractAction = QtGui.QAction(QtGui.QIcon('resources/myicon.png'), 'Get out', self)
+        extractAction.triggered.connect(self.close_application)
+        extractAction.setStatusTip('Leave The App')
+
+        self.toolBar = self.addToolBar('Extraction')
+        self.toolBar.addAction(extractAction)
+
+
+
+
         self.show()
 
     def close_application(self):
-        print('Woooah!')
+        # print('Woooah!')
         sys.exit()
 
 
