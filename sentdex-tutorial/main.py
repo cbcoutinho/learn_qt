@@ -12,12 +12,18 @@ class Window(QtGui.QMainWindow):
 
     def home(self):
         btn = QtGui.QPushButton('Quit', self)
-        btn.clicked.connect(QtCore.QCoreApplication.instance().quit)
+        btn.clicked.connect(self.close_application)
 
-        btn.resize(100,100)
-        btn.move(100,100)
+        # btn.resize(100,100)
+        # btn.resize(btn.sizeHint())
+        btn.resize(btn.minimumSizeHint())
+        # btn.move(100,100)
 
         self.show()
+
+    def close_application(self):
+        print('Woooah!')
+        sys.exit()
 
 
 def run():
