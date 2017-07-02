@@ -8,6 +8,19 @@ class Window(QtGui.QMainWindow):
         self.setGeometry(50, 50, 500, 300)
         self.setWindowTitle('PyQt4 Tutorial')
         self.setWindowIcon(QtGui.QIcon('resources/myicon.png'))
+
+        # *** Main menu ***
+        extractAction = QtGui.QAction('&GET TO THE CHOPPA', self)
+        extractAction.setShortcut('Ctrl+Q')
+        extractAction.setStatusTip('Leave The App')
+        extractAction.triggered.connect(self.close_application)
+
+        self.statusBar()
+
+        mainMenu = self.menuBar()
+        fileMenu = mainMenu.addMenu('&File')
+        fileMenu.addAction(extractAction)
+
         self.home()
 
     def home(self):
@@ -17,7 +30,7 @@ class Window(QtGui.QMainWindow):
         # btn.resize(100,100)
         # btn.resize(btn.sizeHint())
         btn.resize(btn.minimumSizeHint())
-        # btn.move(100,100)
+        btn.move(0,100)
 
         self.show()
 
