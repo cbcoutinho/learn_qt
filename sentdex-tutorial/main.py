@@ -1,11 +1,15 @@
 import sys
 from PyQt4 import QtGui
 
+class Window(QtGui.QMainWindow):
+
+    def __init__(self):
+        super(Window, self).__init__()
+        self.setGeometry(50, 50, 500, 300)
+        self.setWindowTitle('PyQt4 Tutorial')
+        self.setWindowIcon(QtGui.QIcon('resources/myicon.png'))
+        self.show()
+
 app = QtGui.QApplication(sys.argv)
-
-window = QtGui.QWidget()
-window.setGeometry(50, 50, 500, 300)
-window.setWindowTitle('PyQt4 Simple App')
-
-window.show()
-app.exec_()
+GUI = Window()
+sys.exit(app.exec_())
