@@ -45,8 +45,17 @@ class Window(QtGui.QMainWindow):
         self.show()
 
     def close_application(self):
-        # print('Woooah!')
-        sys.exit()
+
+        choice = QtGui.QMessageBox.question(self,
+                                            'Extract!',
+                                            'Really want to quit?',
+                                            QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
+
+        if choice == QtGui.QMessageBox.Yes:
+            print('Leaving now')
+            sys.exit()
+        else:
+            pass
 
 
 def run():
