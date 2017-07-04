@@ -32,6 +32,7 @@ class Window(QtGui.QMainWindow):
         btn.resize(btn.minimumSizeHint())
         btn.move(0,100)
 
+        # *** Simple toolbar
         extractAction = QtGui.QAction(QtGui.QIcon('resources/myicon.png'), 'Get out', self)
         extractAction.triggered.connect(self.close_application)
         extractAction.setStatusTip('Leave The App')
@@ -39,10 +40,21 @@ class Window(QtGui.QMainWindow):
         self.toolBar = self.addToolBar('Extraction')
         self.toolBar.addAction(extractAction)
 
+        # *** Simple checkbox for enlarging window
+        checkBox = QtGui.QCheckBox('Enlarge Window', self)
+        checkBox.move(100,25)
+        checkBox.stateChanged.connect(self.enlarge_window)
 
 
 
         self.show()
+
+    def enlarge_window(self, state):
+        if state == QtCore.Qt.Checked:
+            self.setGeometry(50, 50, 1000, 600)
+        else:
+            self.setGeometry(50, 50, 500, 300)
+
 
     def close_application(self):
 
