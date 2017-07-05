@@ -5,9 +5,14 @@ class Window(QtGui.QMainWindow):
 
     def __init__(self):
         super(Window, self).__init__()
+
+        self.initUI()
+
+    def initUI(self):
         self.setGeometry(50, 50, 500, 300)
         self.setWindowTitle('PyQt4 Tutorial')
         self.setWindowIcon(QtGui.QIcon('resources/myicon.png'))
+        self.centerOnScreen()
 
         # *** Main menu ***
         extractAction = QtGui.QAction('&GET TO THE CHOPPA', self)
@@ -45,15 +50,20 @@ class Window(QtGui.QMainWindow):
         checkBox.move(100,25)
         checkBox.stateChanged.connect(self.enlarge_window)
 
-
-
         self.show()
+
+    def centerOnScreen (self):
+        resolution = QtGui.QDesktopWidget().screenGeometry()
+        self.move((resolution.width() / 2) - (self.frameSize().width() / 2),
+              (resolution.height() / 2) - (self.frameSize().height() / 2))
 
     def enlarge_window(self, state):
         if state == QtCore.Qt.Checked:
             self.setGeometry(50, 50, 1000, 600)
         else:
             self.setGeometry(50, 50, 500, 300)
+
+        self.centerOnScreen()
 
 
     def close_application(self):
